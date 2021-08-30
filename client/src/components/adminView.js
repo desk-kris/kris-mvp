@@ -17,7 +17,8 @@ function AdminView(props) {
   const handleSubmit = e => {
     e.preventDefault();
     props.addProject(project);
-    alert(`Project ${project.title} has been saved!`);
+    console.log("form button clicked!");
+    console.log(project);
     // pass data back up to parent using props.addProject();
     // don't forget to accept the props in the arguments of the function AdminView
   };
@@ -40,6 +41,18 @@ function AdminView(props) {
                 placeholder="Enter Project Title"
                 value={project.title}
                 name="title"
+                onChange={e => handleInputChange(e)}
+              />
+            </div>
+            <div className="form-group">
+              <label for="imageURL">Image URL</label>
+              <input
+                id="imageURL"
+                type="url"
+                className="form-control"
+                placeholder="Copy and paste the image URL here"
+                value={project.url}
+                name="imageurl"
                 onChange={e => handleInputChange(e)}
               />
             </div>
@@ -67,19 +80,6 @@ function AdminView(props) {
                 onChange={e => handleInputChange(e)}
               />
             </div>
-            <div className="form-group">
-              <label for="imageURL">Image URL</label>
-              <input
-                id="imageURL"
-                type="url"
-                className="form-control"
-                placeholder="Copy and paste the image URL here"
-                value={project.url}
-                name="imageurl"
-                onChange={e => handleInputChange(e)}
-              />
-            </div>
-
             <button
               className="btn btn-outline-light btn-lg btn-block"
               type="sumbit"

@@ -19,7 +19,7 @@ con.connect(function(err) {
   console.log("Connected!");
 
   let sql =
-    "DROP TABLE if exists projects; CREATE TABLE projects(projectid varchar(15) NOT NULL, projecttitle VARCHAR(40) not null, projectblurb VARCHAR(1000) not null, projectdescription VARCHAR(1000) not null, projectimageurl VARCHAR(512) not null, PRIMARY KEY (projectid)); DROP TABLE if exists categories; CREATE TABLE categories(categoryid VARCHAR(15) NOT NULL, categoryname VARCHAR(15) not null, PRIMARY KEY (categoryid));";
+    "DROP TABLE if exists projects; CREATE TABLE projects(projectid varchar(15) NOT NULL, projecttitle VARCHAR(40) not null, projectblurb VARCHAR(1000) not null,projectdescription VARCHAR(1000) not null, projectimageurl VARCHAR(512) not null, PRIMARY KEY (projectid)); DROP TABLE if exists categories; CREATE TABLE categories(categoryid VARCHAR(15) NOT NULL, categoryname VARCHAR(15) not null, PRIMARY KEY (categoryid));";
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Table creation `projects` was successful!");

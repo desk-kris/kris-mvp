@@ -2,7 +2,12 @@ import React, { useState } from "react";
 
 function UserView(props) {
   console.log(props);
-  const [featured, setFeatured] = useState(props?.projects?.[0]);
+
+  const [featured, setFeatured] = useState(
+    props?.projects?.[0]
+      ? props.projects[0]
+      : "Please submit a project in Admin panel"
+  );
   // const [deleteCard, setDeleteCard] = useState([])
   // props, in pros is array, so first one is always gon be featered
   const handleDeleteProject = e => {
@@ -16,9 +21,9 @@ function UserView(props) {
         Projects
       </h1>
       <div className="featuredArea">
-        {featured && (
-          <div className="card">
-            <h5 className="card-header">Featured Project</h5>
+        {
+          <div className="card p-3 mb-2 border-bottom border-info">
+            <h5 className="card-header align-self-center">Featured Project</h5>
             <div className="row">
               <img
                 className="col-6 col-md-4"
@@ -27,11 +32,14 @@ function UserView(props) {
               />
               <div className="col-12 col-md-8 card-body">
                 <h5 className="card-title">{featured.projecttitle}</h5>
+                <small className="card-text text-muted">
+                  {featured.projectblurb}
+                </small>
                 <p className="card-text">{featured.projectdescription}</p>
               </div>
             </div>
           </div>
-        )}
+        }
       </div>
 
       <div className="projectsGallery">
@@ -57,7 +65,7 @@ function UserView(props) {
                   </button>
                   <button
                     onClick={() => handleDeleteProject(item.projectid)}
-                    className="btn  btn-outline-primary btn-sm"
+                    className="btn  btn-outline-primary btn-sm justify-content-end"
                   >
                     Delete
                   </button>

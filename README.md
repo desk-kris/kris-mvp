@@ -23,9 +23,9 @@ This repository contains a minimum viable project.
 ```
 
 - Be sure to include .env in your .gitignore file
-- On VSCode, in a new terminal window, run `npm run migrate` in the project folder of this repository, . This will create a table called 'projects' in your database.
+- On VSCode, in a new terminal window, run `npm run migrate` in the project folder of this repository. This will create two tables in your database, table 'projects' (with one test row) and table 'categories'.
 
-- Make sure you understand how the `projects` table is constructed. In your MySQL console, you can run `use krismvp;` and then `describe projects;` to see the structure of the projects table.
+- In your MySQL console, you can run `use krismvp;` and then `describe projects;` to see the structure of the projects table.
 
 ### Development
 

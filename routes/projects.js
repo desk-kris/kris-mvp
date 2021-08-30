@@ -7,7 +7,7 @@ const db = require("../model/helper");
 }); */
 // GET student list
 router.get("/", (req, res) => {
-  db("SELECT * FROM projects;")
+  db("SELECT * FROM projects ORDER BY projectid DESC;")
     .then(results => {
       res.send(results.data);
     })
@@ -38,7 +38,7 @@ router.post("/", (req, res) => {
   // If the query is successful you should send back the full list of items
   // data.push(req.body);
   db(
-    `INSERT INTO projects (projectid, projecttitle, projectblurb,projectdescription, projectimageurl) values ('${req.body.project.id}', '${req.body.project.title}', '${req.body.project.blurb}', '${req.body.project.description}', '${req.body.project.imageurl}');`
+    `INSERT INTO projects (projectid, projecttitle, projectblurb, projectdescription, projectimageurl) values ('${req.body.project.id}', '${req.body.project.title}', '${req.body.project.blurb}', '${req.body.project.description}', '${req.body.project.imageurl}');`
   )
     .then(() => {
       getAllProjects(req, res);

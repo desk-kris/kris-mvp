@@ -11,6 +11,9 @@ const NaviBar = () => {
           </span>
         </li>
         <li className="nav-item">
+          <span className="nav-link">|</span>
+        </li>
+        <li className="nav-item">
           <span className="nav-link">
             <Link to="/userview">Projects</Link>
           </span>

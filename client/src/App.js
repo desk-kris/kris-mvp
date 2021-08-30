@@ -12,7 +12,6 @@ import {
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(true);
-  //props.projects[0]
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -35,40 +34,29 @@ function App() {
       headers: {
         "Content-Type": "application/json"
       },
-      //4. Why are we passing body : JSON.stringify(input); why not JSON.stringify{firstname: firstname}
       body: JSON.stringify({ project })
     })
-      // Continue fetch request here
       .then(res => res.json())
       .then(projects => {
-        // upon success, update projects
         setProjects(projects);
       })
       .catch(error => {
-        // upon failure, show error message
         console.log(error);
       });
   };
   const handleDeleteProject = id => {
-    // delete task from database
-    // upon success, update tasks
-    // upon failure, show error message
     fetch(`/projects/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
       }
     })
-      // Continue fetch request here
       .then(res => res.json())
       .then(projects => {
-        // upon success, update projects
         setProjects(projects);
-
-        //console.log(data);
       })
       .catch(error => {
-        // upon failure, show error message
+        console.log(error);
       });
   };
 

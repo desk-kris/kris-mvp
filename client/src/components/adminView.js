@@ -17,8 +17,7 @@ function AdminView(props) {
   const handleSubmit = e => {
     e.preventDefault();
     props.addProject(project);
-    console.log("form button clicked!");
-    console.log(project);
+    alert(`You have submitted ${project.title}. \nPress OK.`);
     // pass data back up to parent using props.addProject();
     // don't forget to accept the props in the arguments of the function AdminView
   };
@@ -30,7 +29,7 @@ function AdminView(props) {
       </h1>
       <div className="row">
         <div className="col-6 col-md-4 bg-info text-white rounded">
-          <form>
+          <form onSubmit={handleSubmit}>
             <h5 className="p-3">Enter your project details here</h5>
             <div className="form-group">
               <label for="projectTitle">Project Title</label>
@@ -39,20 +38,7 @@ function AdminView(props) {
                 type="text"
                 className="form-control"
                 placeholder="Enter Project Title"
-                value={project.title}
                 name="title"
-                onChange={e => handleInputChange(e)}
-              />
-            </div>
-            <div className="form-group">
-              <label for="imageURL">Image URL</label>
-              <input
-                id="imageURL"
-                type="url"
-                className="form-control"
-                placeholder="Copy and paste the image URL here"
-                value={project.url}
-                name="imageurl"
                 onChange={e => handleInputChange(e)}
               />
             </div>
@@ -63,7 +49,6 @@ function AdminView(props) {
                 type="text"
                 className="form-control"
                 placeholder="Write a short introduction here"
-                value={project.blurb}
                 name="blurb"
                 onChange={e => handleInputChange(e)}
               />
@@ -75,15 +60,25 @@ function AdminView(props) {
                 type="textarea"
                 className="form-control"
                 placeholder="Put in detailed explanation of project here"
-                value={project.description}
                 name="description"
                 onChange={e => handleInputChange(e)}
               />
             </div>
+            <div className="form-group">
+              <label for="imageURL">Image URL</label>
+              <input
+                id="imageURL"
+                type="url"
+                className="form-control"
+                placeholder="Copy and paste the image URL here"
+                name="imageurl"
+                onChange={e => handleInputChange(e)}
+              />
+            </div>
+
             <button
               className="btn btn-outline-light btn-lg btn-block"
               type="sumbit"
-              onClick={handleSubmit}
             >
               Submit
             </button>

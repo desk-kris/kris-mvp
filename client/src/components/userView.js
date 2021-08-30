@@ -1,55 +1,75 @@
 import React, { useState } from "react";
 
 function UserView(props) {
-  const [featured, setFeatured] = useState(props.projects[0]);
+  console.log(props);
+  const [featured, setFeatured] = useState(props?.projects?.[0]);
+  // const [deleteCard, setDeleteCard] = useState([])
   // props, in pros is array, so first one is always gon be featered
+  const handleDeleteProject = e => {
+    console.log(`the id should be ${e}`);
+    props.deleteProject(e);
+  };
+
   return (
     <div>
-      <h1>User View</h1>
+      <h1 className="display-4 p-3 mb-2 border-bottom border-secondary">
+        Projects
+      </h1>
       <div className="featuredArea">
         {featured && (
-          <div>
-            <h3>Project Name: {featured.title}</h3>
-            <p>
-              Project Description: <br />
-              {featured.description}
-            </p>
+          <div className="card">
+            <h5 className="card-header">Featured Project</h5>
+            <div className="row">
+              <img
+                className="col-6 col-md-4"
+                src={featured.projectimageurl}
+                alt={featured.projecttitle}
+              />
+              <div className="col-12 col-md-8 card-body">
+                <h5 className="card-title">{featured.projecttitle}</h5>
+                <p className="card-text">{featured.projectdescription}</p>
+              </div>
+            </div>
           </div>
         )}
-        <img src={featured.imageurl} alt={featured.title} />
       </div>
 
       <div className="projectsGallery">
-        {props.projects.map(item => {
-          return (
-            <div key={item.id} className="card" style={{ width: "18rem" }}>
-              <img
-                className="card-img-top"
-                src={item.imageurl}
-                alt={item.title}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{item.title}</h5>
-                <p className="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <button
-                  onClick={() => {
-                    setFeatured(item);
-                    console.log(item.id + item.title);
-                  }}
-                  className="btn btn-primary"
-                >
-                  View
-                </button>
+        <div className="card-columns">
+          {props.projects.map(item => {
+            return (
+              <div key={item.projectid} className="card">
+                <img
+                  className="card-img-top"
+                  src={item.projectimageurl}
+                  alt={item.projecttitle}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{item.projecttitle}</h5>
+                  <p className="card-text">{item.projectblurb}</p>
+                  <button
+                    onClick={() => {
+                      setFeatured(item);
+                    }}
+                    className="btn btn-outline-primary btn-sm"
+                  >
+                    View more
+                  </button>
+                  <button
+                    onClick={() => handleDeleteProject(item.projectid)}
+                    className="btn  btn-outline-primary btn-sm"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 }
 
 export default UserView;
+/* */

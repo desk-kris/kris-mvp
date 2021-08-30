@@ -25,39 +25,90 @@ function AdminView(props) {
 
   return (
     <div>
-      <form>
-        <label>
-          Project Title
-          <input
-            type="text"
-            placeholder="My Project Title"
-            name="title"
-            onChange={e => handleInputChange(e)}
-          />
-        </label>
-        <label>
-          Image URL
-          <input
-            type="url"
-            placeholder="http://www.image.com/image.jpg"
-            name="imageurl"
-            onChange={e => handleInputChange(e)}
-          />
-        </label>
-        <label>
-          Project Description
-          <input
-            as="textarea"
-            placeholder="This project is..."
-            name="description"
-            onChange={e => handleInputChange(e)}
-          />
-        </label>
+      <h1 className="display-4 p-3 mb-2 border-bottom border-secondary">
+        Admin Panel
+      </h1>
+      <div className="row">
+        <div className="col-6 col-md-4 bg-info text-white rounded">
+          <form>
+            <h5 className="p-3">Enter your project details here</h5>
+            <div className="form-group">
+              <label for="projectTitle">Project Title</label>
+              <input
+                id="projectTitle"
+                type="text"
+                className="form-control"
+                placeholder="Enter Project Title"
+                value={project.title}
+                name="title"
+                onChange={e => handleInputChange(e)}
+              />
+            </div>
+            <div className="form-group">
+              <label for="imageURL">Image URL</label>
+              <input
+                id="imageURL"
+                type="url"
+                className="form-control"
+                placeholder="Copy and paste the image URL here"
+                value={project.url}
+                name="imageurl"
+                onChange={e => handleInputChange(e)}
+              />
+            </div>
+            <div className="form-group">
+              <label for="blurb">Short blurb</label>
+              <input
+                id="blurb"
+                type="text"
+                className="form-control"
+                placeholder="Write a short introduction here"
+                value={project.blurb}
+                name="blurb"
+                onChange={e => handleInputChange(e)}
+              />
+            </div>
+            <div className="form-group">
+              <label for="description">Project Description</label>
+              <input
+                id="description"
+                type="textarea"
+                className="form-control"
+                placeholder="Put in detailed explanation of project here"
+                value={project.description}
+                name="description"
+                onChange={e => handleInputChange(e)}
+              />
+            </div>
+            <button
+              className="btn btn-outline-light btn-lg btn-block"
+              type="sumbit"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </form>
+        </div>
 
-        <button type="sumbit" onClick={handleSubmit}>
-          Submit
-        </button>
-      </form>
+        <div className="col-12 col-md-8 rounded ">
+          <div className="card mb-3 border border-info">
+            <div className="card-header alert alert-primary">
+              Preview your entry here:
+            </div>
+            <div className="card-body">
+              <h5 className="card-title">Title: {project.title}</h5>
+              <p className="card-text">Blurb: {project.blurb}</p>
+              <p className="card-text">Description: {project.description}</p>
+              <p className="card-text">Image:</p>
+              <img
+                className="card-img-bottom"
+                src={project.imageurl}
+                alt={project.title}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

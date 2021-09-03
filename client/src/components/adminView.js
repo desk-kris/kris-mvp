@@ -17,7 +17,7 @@ function AdminView(props) {
   const handleSubmit = e => {
     e.preventDefault();
     props.addProject(project);
-    alert(`You have submitted ${project.title}. \nPress OK.`);
+    // alert(`You have submitted ${project.title}. \nPress OK.`);
     // pass data back up to parent using props.addProject();
     // don't forget to accept the props in the arguments of the function AdminView
   };

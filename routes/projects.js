@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
+var replaceall = require("replaceall");
 
 /* router.get("/", (req, res) => {
   res.send("Welcome to the API");
@@ -36,9 +37,27 @@ const getAllProjects = (req, res) => {
 router.post("/", (req, res) => {
   // The request's body is available in req.body
   // If the query is successful you should send back the full list of items
-  // data.push(req.body);
+  // // data.push(req.body);
+  // let desc = req.body.project.description;
+  // let newDesc = replaceall("'", "\\'", req.body.project.description);
+  console.log(
+    `INSERT INTO projects (projectid, projecttitle, projectblurb, projectdescription, projectimageurl) values ('${
+      req.body.project.id
+    }', '${req.body.project.title}', '${req.body.project.blurb}', '${replaceall(
+      "'",
+      "\\'",
+      req.body.project.description
+    )}', '${req.body.project.imageurl}');`
+  );
+  //res.status(200).send("acknowledged");
   db(
-    `INSERT INTO projects (projectid, projecttitle, projectblurb, projectdescription, projectimageurl) values ('${req.body.project.id}', '${req.body.project.title}', '${req.body.project.blurb}', '${req.body.project.description}', '${req.body.project.imageurl}');`
+    `INSERT INTO projects (projectid, projecttitle, projectblurb, projectdescription, projectimageurl) values ('${
+      req.body.project.id
+    }', '${req.body.project.title}', '${req.body.project.blurb}', '${replaceall(
+      "'",
+      "\\'",
+      req.body.project.description
+    )}', '${req.body.project.imageurl}');`
   )
     .then(() => {
       getAllProjects(req, res);
